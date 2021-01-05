@@ -1,4 +1,4 @@
-package entities;
+package domain.entities;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

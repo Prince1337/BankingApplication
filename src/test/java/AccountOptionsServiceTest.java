@@ -1,22 +1,23 @@
-import entities.Address;
-import entities.Customer;
+import domain.entities.Address;
+import domain.entities.Customer;
+import domain.service.CustomerService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
 
-class InteractorTest {
+class CustomerServiceTest {
 
   @Test
   @DisplayName("Deposit one euro")
   void depositOneEuro() {
-    Interactor interactor = new Interactor();
+    CustomerService customerService = new CustomerService();
     BigDecimal initialBalance = BigDecimal.valueOf(100);
     Customer customer = new Customer(0, "Max Mustermann", new Address("Musterstreet", 42, 11111, "Mustercity"), initialBalance);
     BigDecimal amount = BigDecimal.valueOf(1);
 
-    interactor.deposit(customer, amount);
+    customerService.deposit(customer, amount);
 
     Assertions.assertEquals(initialBalance.add(amount), customer.getAccount().showBalance());
   }
@@ -24,12 +25,12 @@ class InteractorTest {
   @Test
   @DisplayName("Deposit negative amount")
   void depositNegativeAmount() {
-    Interactor interactor = new Interactor();
+    CustomerService customerService = new CustomerService();
     BigDecimal initialBalance = BigDecimal.valueOf(100);
     Customer customer = new Customer(0, "Max Mustermann", new Address("Musterstreet", 42, 11111, "Mustercity"), initialBalance);
     BigDecimal amount = BigDecimal.valueOf(-100);
 
-    interactor.deposit(customer, amount);
+    customerService.deposit(customer, amount);
 
     Assertions.assertEquals(initialBalance, customer.getAccount().showBalance());
   }
@@ -37,12 +38,12 @@ class InteractorTest {
   @Test
   @DisplayName("Withdraw one euro")
   void withdrawOneEuro() {
-    Interactor interactor = new Interactor();
+    CustomerService customerService = new CustomerService();
     BigDecimal initialBalance = BigDecimal.valueOf(100);
     Customer customer = new Customer(0, "Max Mustermann", new Address("Musterstreet", 42, 11111, "Mustercity"), initialBalance);
     BigDecimal amount = BigDecimal.valueOf(1);
 
-    interactor.withdraw(customer, amount);
+    customerService.withdraw(customer, amount);
 
     Assertions.assertEquals(initialBalance.subtract(amount), customer.getAccount().showBalance());
   }
@@ -50,12 +51,12 @@ class InteractorTest {
   @Test
   @DisplayName("Withdraw negative amount")
   void withdrawNegativeAmount() {
-    Interactor interactor = new Interactor();
+    CustomerService customerService = new CustomerService();
     BigDecimal initialBalance = BigDecimal.valueOf(100);
     Customer customer = new Customer(0, "Max Mustermann", new Address("Musterstreet", 42, 11111, "Mustercity"), initialBalance);
     BigDecimal amount = BigDecimal.valueOf(-100);
 
-    interactor.withdraw(customer, amount);
+    customerService.withdraw(customer, amount);
 
     Assertions.assertEquals(initialBalance, customer.getAccount().showBalance());
   }
