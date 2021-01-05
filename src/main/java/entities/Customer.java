@@ -1,15 +1,19 @@
 package entities;
 
+import java.math.BigDecimal;
+
 public class Customer {
 
   private final int id;
   private final String name;
   private Address address;
+  private Account account;
 
-  public Customer(int id, String name, Address address) {
+  public Customer(int id, String name, Address address, BigDecimal initialBalance) {
     this.id = id;
     this.name = name;
     this.address = address;
+    this.account = new Account(initialBalance);
   }
 
   public int getId() {
@@ -33,4 +37,7 @@ public class Customer {
         '}';
   }
 
+  public Account getAccount() {
+    return account;
+  }
 }

@@ -1,10 +1,7 @@
 package entities;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
 
 import java.math.BigDecimal;
 
@@ -29,7 +26,7 @@ class AccountTest {
 
     testAccount.add(amount);
 
-    assertEquals(initialBalance.add(amount), testAccount.getBalance());
+    assertEquals(initialBalance.add(amount), testAccount.showBalance());
   }
 
   @Test
@@ -41,7 +38,7 @@ class AccountTest {
 
     testAccount.add(amount);
 
-    assertEquals(initialBalance.add(amount), testAccount.getBalance());
+    assertEquals(initialBalance.add(amount), testAccount.showBalance());
   }
 
   @Test
@@ -53,7 +50,7 @@ class AccountTest {
 
     testAccount.add(amount);
 
-    assertEquals(initialBalance, testAccount.getBalance());
+    assertEquals(initialBalance, testAccount.showBalance());
   }
 
   @Test
@@ -65,7 +62,7 @@ class AccountTest {
 
     testAccount.add(amount);
 
-    assertEquals(initialBalance, testAccount.getBalance());
+    assertEquals(initialBalance, testAccount.showBalance());
   }
 
   @Test
@@ -77,7 +74,7 @@ class AccountTest {
 
     testAccount.subtract(amount);
 
-    assertEquals(initialBalance.subtract(amount), testAccount.getBalance());
+    assertEquals(initialBalance.subtract(amount), testAccount.showBalance());
 
   }
 
@@ -90,7 +87,7 @@ class AccountTest {
 
     testAccount.subtract(amount);
 
-    assertEquals(initialBalance.subtract(amount), testAccount.getBalance());
+    assertEquals(initialBalance.subtract(amount), testAccount.showBalance());
   }
 
   @Test
@@ -102,7 +99,7 @@ class AccountTest {
 
     testAccount.subtract(amount);
 
-    assertEquals(initialBalance, testAccount.getBalance());
+    assertEquals(initialBalance, testAccount.showBalance());
   }
 
   @Test
@@ -114,7 +111,7 @@ class AccountTest {
 
     testAccount.subtract(amount);
 
-    assertEquals(initialBalance, testAccount.getBalance());
+    assertEquals(initialBalance, testAccount.showBalance());
   }
 
 }
