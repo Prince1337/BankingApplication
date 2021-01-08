@@ -1,14 +1,24 @@
-package com.example.BankingApplication.domain.entities;
+package com.example.bankingapplication.domain.entities;
 
+import javax.persistence.*;
 import java.math.BigDecimal;
 
+@Entity
 public class Account {
+
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private int idAccount;
   private BigDecimal balance;
+  @OneToOne(cascade = CascadeType.ALL)
   private Transactions transactions;
 
   public Account(BigDecimal balance) {
     this.balance = balance;
     transactions = new Transactions();
+  }
+
+  public Account() {
   }
 
   public BigDecimal showBalance() {
@@ -42,6 +52,10 @@ public class Account {
 
   public Transactions getTransactions() {
     return transactions;
+  }
+
+  public BigDecimal getBalance() {
+    return balance;
   }
 
   @Override

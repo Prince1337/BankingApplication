@@ -1,22 +1,32 @@
-package com.example.BankingApplication.domain.entities;
+package com.example.bankingapplication.domain.entities;
 
+import lombok.Data;
+
+import javax.persistence.*;
 import java.math.BigDecimal;
 
+@Entity
+@Data
 public class Customer {
 
-  private final int id;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private long id;
+
   private final String name;
+  @OneToOne(cascade = CascadeType.ALL)
   private Address address;
+  @OneToOne(cascade = CascadeType.ALL)
   private Account account;
 
-  public Customer(int id, String name, Address address, BigDecimal initialBalance) {
-    this.id = id;
+  public Customer(String name, Address address, BigDecimal initialBalance) {
     this.name = name;
     this.address = address;
     this.account = new Account(initialBalance);
+	System.out.println(account);
   }
 
-  public int getId() {
+  public long getId() {
     return id;
   }
 

@@ -1,10 +1,9 @@
-package com.example.BankingApplication.domain.ports;
+package com.example.bankingapplication.domain.ports;
 
-import com.example.BankingApplication.domain.entities.Address;
-import com.example.BankingApplication.domain.entities.Customer;
-import com.example.BankingApplication.domain.entities.Transaction;
-import com.example.BankingApplication.domain.entities.TransactionType;
-import org.springframework.stereotype.Component;
+import com.example.bankingapplication.domain.entities.Address;
+import com.example.bankingapplication.domain.entities.Customer;
+import com.example.bankingapplication.domain.entities.Transaction;
+import com.example.bankingapplication.domain.entities.TransactionType;
 
 import java.math.BigDecimal;
 import java.util.List;

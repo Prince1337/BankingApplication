@@ -1,11 +1,24 @@
-package com.example.BankingApplication.domain.entities;
+package com.example.bankingapplication.domain.entities;
 
+import lombok.Data;
+
+import javax.persistence.*;
+
+@Entity
+@Data
 public class Address {
 
-  private final String street;
-  private final int houseNumber;
-  private final int postalCode;
-  private final String city;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private int idAddress;
+  private String street;
+  private int houseNumber;
+  @Column(name = "postalcode")
+  private int postalCode;
+  private String city;
+
+  public Address() {
+  }
 
   public Address(String street, int houseNumber, int postalCode, String city) {
     this.street = street;
@@ -13,6 +26,8 @@ public class Address {
     this.postalCode = postalCode;
     this.city = city;
   }
+
+
 
   public String getStreet() {
     return street;

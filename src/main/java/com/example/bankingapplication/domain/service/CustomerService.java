@@ -1,31 +1,41 @@
-package com.example.BankingApplication.domain.service;
+package com.example.bankingapplication.domain.service;
 
 
 
-import com.example.BankingApplication.domain.entities.*;
-import com.example.BankingApplication.domain.ports.CustomerRegistryPort;
-import com.example.BankingApplication.domain.ports.CustomerRepositoryPort;
-import com.example.BankingApplication.domain.usecases.CustomerUseCase;
+import com.example.bankingapplication.domain.entities.*;
+import com.example.bankingapplication.domain.ports.CustomerRegistryPort;
+import com.example.bankingapplication.domain.ports.CustomerRepositoryPort;
+import com.example.bankingapplication.domain.usecases.CustomerUseCase;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.util.List;
 
-@Service
+@Component
 public class CustomerService implements CustomerUseCase, CustomerRegistryPort {
 
-  Customer customer;
-  private final CustomerRepositoryPort customerRepositoryPort = null;
+  @Autowired
+  private final CustomerRepositoryPort customerRepositoryPort;
+
+  public CustomerService() {
+    customerRepositoryPort = null;
+  }
+
+  public CustomerService(CustomerRepositoryPort customerRepositoryPort) {
+    this.customerRepositoryPort = customerRepositoryPort;
+  }
 
   @Override
   public Customer createCustomer(int id, String name, Address address, BigDecimal initialBalance) {
-    this.customer = new Customer(id, name, address, initialBalance);
+    Customer customer = new Customer(name, address, initialBalance);
+    System.out.println(customer);
+    customerRepositoryPort.create(customer);
     return customer;
   }
 
-  public void saveCustomer(){
-    customerRepositoryPort.create(customer);
-  }
+
 
   @Override
   public BigDecimal showBalance(Customer customer) {

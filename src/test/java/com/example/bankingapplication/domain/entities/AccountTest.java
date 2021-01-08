@@ -1,4 +1,4 @@
-package com.example.BankingApplication.domain.entities;
+package com.example.bankingapplication.domain.entities;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

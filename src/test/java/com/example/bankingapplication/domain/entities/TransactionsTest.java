@@ -1,4 +1,4 @@
-package com.example.BankingApplication.domain.entities;
+package com.example.bankingapplication.domain.entities;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -30,7 +30,7 @@ class TransactionsTest {
 
         testAccount.add(amount);
 
-        assertEquals(BigDecimal.valueOf(5), testAccount.getTransactions().getTransactionList().get(0).getAmount());
+        assertEquals(BigDecimal.valueOf(5), testAccount.getTransactions().getTransactionList().get(0).getTransactionAmount());
     }
 
     @Test
@@ -66,7 +66,7 @@ class TransactionsTest {
 
         testAccount.add(amount);
 
-        assertEquals(amount, testAccount.getTransactions().getTransactionList().get(0).getAmount());
+        assertEquals(amount, testAccount.getTransactions().getTransactionList().get(0).getTransactionAmount());
     }
 
     @Test
@@ -78,7 +78,7 @@ class TransactionsTest {
 
         testAccount.add(amount);
 
-        assertEquals(initialBalance, testAccount.getTransactions().getTransactionList().get(0).getBalance());
+        assertEquals(initialBalance, testAccount.getTransactions().getTransactionList().get(0).getTransactionBalance());
     }
 
     @Test
@@ -114,7 +114,7 @@ class TransactionsTest {
 
         testAccount.subtract(amount);
 
-        assertEquals(amount, testAccount.getTransactions().getTransactionList().get(0).getAmount());
+        assertEquals(amount, testAccount.getTransactions().getTransactionList().get(0).getTransactionAmount());
 
     }
 
@@ -127,7 +127,7 @@ class TransactionsTest {
 
         testAccount.subtract(amount);
 
-        assertEquals(initialBalance, testAccount.getTransactions().getTransactionList().get(0).getBalance());
+        assertEquals(initialBalance, testAccount.getTransactions().getTransactionList().get(0).getTransactionBalance());
 
     }
 
