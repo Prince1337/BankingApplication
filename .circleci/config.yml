@@ -42,4 +42,3 @@ jobs:
 
       # run tests!
       - run: ./gradlew test
-      - run: ./gradlew bootRun
