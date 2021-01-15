@@ -25,12 +25,12 @@ public class Controller {
     }
 
     @GetMapping("/")
-    public String index() {
+    public String registration() {
         return "index";
     }
 
     @PostMapping
-    public String hi(@RequestParam("name") String name, @RequestParam("street") String street, @RequestParam("houseNumber") int houseNumber,
+    public String registrationData(@RequestParam("name") String name, @RequestParam("street") String street, @RequestParam("houseNumber") int houseNumber,
             @RequestParam("postalCode") int postalCode, @RequestParam("city") String city){
         Address address = new Address(street, houseNumber, postalCode, city);
         System.out.println(address);

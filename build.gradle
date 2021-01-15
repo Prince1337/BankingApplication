@@ -2,6 +2,7 @@ plugins {
 	id 'org.springframework.boot' version '2.4.1'
 	id 'io.spring.dependency-management' version '1.0.10.RELEASE'
 	id 'java'
+	id 'com.avast.gradle.docker-compose' version '0.7.1'
 }
 
 group = 'com.example'
@@ -28,4 +29,8 @@ dependencies {
 
 test {
 	useJUnitPlatform()
+}
+
+dockerCompose{
+	useComposeFiles = ['docker-compose.yml']
 }

@@ -1,12 +1,13 @@
 package com.example.bankingapplication.domain.ports;
 
 import com.example.bankingapplication.domain.entities.Customer;
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Repository;
+
+import java.util.Optional;
 
 
 public interface CustomerRepositoryPort {
   void create(Customer customer);
-//  void updateCustomer (Customer oldCustomer, Customer newCustomer);
-//  Customer findCustomer(int id);
+  void delete (Customer customer);
+  void updateCustomer (Customer oldCustomer, Customer newCustomer);
+  Optional<Customer> findCustomer(int id);
 }
