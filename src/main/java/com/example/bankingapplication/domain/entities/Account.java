@@ -1,9 +1,12 @@
 package com.example.bankingapplication.domain.entities;
 
+import lombok.Data;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
 
 @Entity
+@Data
 public class Account {
 
   @Id
@@ -26,28 +29,26 @@ public class Account {
   }
 
   public void add(BigDecimal amount){
-    if(isNotValid(amount)){
-      amount = BigDecimal.valueOf(0);
-    }
-    else
+    if (isValid(amount)) {
       transactions.addTransaction(balance, amount, TransactionType.DEPOSIT);
-
-    this.balance = balance.add(amount);
+      this.balance = balance.add(amount);
+    } else {
+      this.balance = balance.add(BigDecimal.valueOf(0));
+    }
   }
 
-  private boolean isNotValid(BigDecimal amount) {
-    return amount.compareTo(BigDecimal.valueOf(0)) < 0 ||
-        amount.compareTo(BigDecimal.valueOf(20000)) > 0;
+  private boolean isValid(BigDecimal amount) {
+    return amount.compareTo(BigDecimal.valueOf(0)) > 0 &&
+        amount.compareTo(BigDecimal.valueOf(20001)) < 0;
   }
 
   public void subtract(BigDecimal amount){
-    if(isNotValid(amount)){
-      amount = BigDecimal.valueOf(0);
-    }
-    else
+    if (isValid(amount)) {
       transactions.addTransaction(balance, amount, TransactionType.WITHDRAWAL);
-
-    this.balance = balance.subtract(amount);
+      this.balance = balance.subtract(amount);
+    } else {
+      this.balance = balance.subtract(BigDecimal.valueOf(0));
+    }
   }
 
   public Transactions getTransactions() {

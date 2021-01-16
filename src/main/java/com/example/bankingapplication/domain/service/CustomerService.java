@@ -1,19 +1,19 @@
 package com.example.bankingapplication.domain.service;
 
 
-
 import com.example.bankingapplication.domain.entities.*;
 import com.example.bankingapplication.domain.ports.CustomerRegistryPort;
 import com.example.bankingapplication.domain.ports.CustomerRepositoryPort;
 import com.example.bankingapplication.domain.usecases.CustomerUseCase;
+import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.util.List;
 
 @Component
+@Data
 public class CustomerService implements CustomerUseCase, CustomerRegistryPort {
 
   @Autowired
@@ -30,8 +30,8 @@ public class CustomerService implements CustomerUseCase, CustomerRegistryPort {
   @Override
   public Customer createCustomer(int id, String name, Address address, BigDecimal initialBalance) {
     Customer customer = new Customer(name, address, initialBalance);
-    System.out.println(customer);
-    customerRepositoryPort.create(customer);
+      assert customerRepositoryPort != null;
+      customerRepositoryPort.create(customer);
     return customer;
   }
 

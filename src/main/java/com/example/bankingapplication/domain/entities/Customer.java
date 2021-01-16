@@ -23,7 +23,6 @@ public class Customer {
     this.name = name;
     this.address = address;
     this.account = new Account(initialBalance);
-	System.out.println(account);
   }
 
   public long getId() {

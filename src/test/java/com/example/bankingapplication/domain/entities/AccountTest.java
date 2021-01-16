@@ -7,13 +7,14 @@ import java.math.BigDecimal;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+@SuppressWarnings("PMD.JUnitAssertionsShouldIncludeMessage")
 class AccountTest {
     @Test
     @DisplayName("Create account")
     void createAccount() {
         BigDecimal initialBalance = BigDecimal.valueOf(100);
         Account testAccount = new Account(initialBalance);
-        assertNotNull(testAccount);
+        assertNotNull(testAccount, "Account wurde erstellt");
     }
 
     @Test

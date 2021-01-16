@@ -3,12 +3,16 @@ package com.example.bankingapplication.adapter;
 import com.example.bankingapplication.database.CustomerRepository;
 import com.example.bankingapplication.domain.entities.Customer;
 import com.example.bankingapplication.domain.ports.CustomerRepositoryPort;
+import lombok.Data;
 import org.springframework.stereotype.Component;
 
+import javax.persistence.Transient;
 import java.util.Optional;
 
 @Component
+@Data
 public class Database implements CustomerRepositoryPort{
+  @Transient
   private final CustomerRepository customerRepository;
 
   public Database(CustomerRepository customerRepository) {
@@ -17,7 +21,6 @@ public class Database implements CustomerRepositoryPort{
 
   @Override
   public void create(Customer customer) {
-    System.out.println(customer);
     customerRepository.save(customer);
   }
 
@@ -28,7 +31,7 @@ public class Database implements CustomerRepositoryPort{
 
   @Override
   public void updateCustomer(Customer oldCustomer, Customer newCustomer) {
-
+    throw new UnsupportedOperationException();
   }
 
   @Override

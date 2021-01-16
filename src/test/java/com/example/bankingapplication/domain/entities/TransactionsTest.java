@@ -2,11 +2,14 @@ package com.example.bankingapplication.domain.entities;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.math.BigDecimal;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+@SuppressWarnings("PMD.JUnitAssertionsShouldIncludeMessage")
 class TransactionsTest {
 
     @Test
@@ -21,40 +24,39 @@ class TransactionsTest {
         assertEquals(1, testAccount.getTransactions().getTransactionList().size());
     }
 
-    @Test
-    @DisplayName("Add five euro transaction")
-    void addFiveEuroTransaction() {
+    @ParameterizedTest
+    @DisplayName("parameterized")
+    @ValueSource(ints = {5, 20000})
+    void addValidAmount(int amount) {
         BigDecimal initialBalance = BigDecimal.valueOf(100);
-        BigDecimal amount = BigDecimal.valueOf(5);
         Account testAccount = new Account(initialBalance);
 
-        testAccount.add(amount);
+        testAccount.add(BigDecimal.valueOf(amount));
 
-        assertEquals(BigDecimal.valueOf(5), testAccount.getTransactions().getTransactionList().get(0).getTransactionAmount());
+        assertEquals(BigDecimal.valueOf(amount), testAccount.getTransactions().getTransactionList().get(0).getTransactionAmount());
     }
 
-    @Test
-    @DisplayName("Don't add 30000 euro transaction")
-    void donTAdd30000EuroTransaction() {
+    @ParameterizedTest
+    @ValueSource(ints = {30000, -100, 0})
+    void dontAddInvalidAmount(int amount){
         BigDecimal initialBalance = BigDecimal.valueOf(100);
-        BigDecimal amount = BigDecimal.valueOf(30000);
         Account testAccount = new Account(initialBalance);
 
-        testAccount.add(amount);
+        testAccount.add(BigDecimal.valueOf(amount));
 
         assertEquals(0, testAccount.getTransactions().getTransactionList().size());
     }
 
     @Test
-    @DisplayName("Don't add -100 euro deposit transaction")
-    void donTAddNegative100EuroDepositTransaction() {
+    @DisplayName("add 20000 euro transaction")
+    void add20000EuroTransaction() {
         BigDecimal initialBalance = BigDecimal.valueOf(100);
-        BigDecimal amount = BigDecimal.valueOf(-100);
+        BigDecimal amount = BigDecimal.valueOf(20000);
         Account testAccount = new Account(initialBalance);
 
         testAccount.add(amount);
 
-        assertEquals(0, testAccount.getTransactions().getTransactionList().size());
+        assertEquals(1, testAccount.getTransactions().getTransactionList().size());
     }
 
     @Test
