@@ -42,5 +42,5 @@ jobs:
 
       # run tests!
       - run: ./gradlew check
-      - run: ./gradlew sonarlintMain
-      - run: ./gradlew sonarlintTest
+      #- run: ./gradlew sonarlintMain
+      #- run: ./gradlew sonarlintTest
